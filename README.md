@@ -49,6 +49,30 @@ Definations: "#0-" are "free bytes", "#1-" are commands (and "\[...]" are argume
 # Tested on / Протестировано на
 ## English
 
+- [Koihime](https://vndb.org/v2347).
+- [Shangrlia](https://vndb.org/v3182) ([Elf Classics](https://vndb.org/r5220)).
+- [Shangrlia 2](https://vndb.org/v3183) ([Elf Classics](https://vndb.org/r5220)).
+- [Kono Yo no Hate de Koi o Utau Shoujo YU-NO](https://vndb.org/v1377) ([Elf Classics](https://vndb.org/r5220)).
+- [Shangrlia](https://vndb.org/v3182) ([Shangrlia Multipack](https://vndb.org/r6255)).
+- [Shangrlia 2](https://vndb.org/v3183) ([Shangrlia Multipack](https://vndb.org/r6255)).
 
-# Русский
+## Русский
+
+- [Принцесса любви](https://vndb.org/v2347).
+- [Шангри-ла](https://vndb.org/v3182) ([Классика от Elf](https://vndb.org/r5220)).
+- [Шангри-ла 2](https://vndb.org/v3183) ([Классика от Elf](https://vndb.org/r5220)).
+- [Ю-НО, девушка, что воспевает любовь на краю нашего света](https://vndb.org/v1377) ([Классика от Elf](https://vndb.org/r5220)).
+- [Шангри-ла](https://vndb.org/v3182) ([Шангли-ла: Комплексный пакет](https://vndb.org/r6255)).
+- [Шангри-ла 2](https://vndb.org/v3183) ([Шангли-ла: Комплексный пакет](https://vndb.org/r6255)).
+
+# Some useful function / Некоторые полезные функции
+## English
+There is one nasty problem. One you can encouter almost every time you work on fantranslation of game on this engine. And this is... lack of breaks! Not only AI5WIN's messagebox can contain too few symbols, this engine itself cannot print too many at once. But my tool, unlike some shabby string replacers, allows you to edit code fully and therefore solve all problem with breaks. This section also contains some other functions you may find useful.
+Do note, methods here may not work on some script version.
+
+
+
+## Russian
+Есть одна неприятная проблема, с коей чуть ли не каждый раз столкнуться можно, когда работаешь над фанатским переводом игры на данном движке. Что же за проблема, спросите вы? Ответ же... недостаток переносов! Более того, в AI5WIN не просто не влезают сообщения, данный движок просто не может выводить слишком много символов за раз. Но моё средство, в отличии от всяких потрёпанных редакторов строк, позволяет вам полностью редактировать код. А, значит, и решить проблемы с переносами. Кроме того, в данной секции описывается ряд других полезных функций.
+Заметьте, указанные здесь методы могут не работать во всех версиях скриптов.
 
