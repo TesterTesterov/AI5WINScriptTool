@@ -63,7 +63,7 @@ Also 1st version of the engine use special symbols. The tool decompile them as \
 - [Принцесса любви](https://vndb.org/v2347).
 - [Шангри-ла](https://vndb.org/v3182) ([Классика от Elf](https://vndb.org/r5220)).
 - [Шангри-ла 2](https://vndb.org/v3183) ([Классика от Elf](https://vndb.org/r5220)).
-- [Ю-НО, девушка, что воспевает любовь на краю нашего света](https://vndb.org/v1377) ([Классика от Elf](https://vndb.org/r5220)).
+- [Ю-НО: девушка, что воспевает любовь на краю нашего света](https://vndb.org/v1377) ([Классика от Elf](https://vndb.org/r5220)).
 - [Шангри-ла](https://vndb.org/v3182) ([Шангли-ла: Комплексный пакет](https://vndb.org/r6255)).
 - [Шангри-ла 2](https://vndb.org/v3183) ([Шангли-ла: Комплексный пакет](https://vndb.org/r6255)).
 
