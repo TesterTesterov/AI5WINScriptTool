@@ -67,7 +67,7 @@ Also 1st version of the engine use special symbols. The tool decompile them as \
 - [Шангри-ла](https://vndb.org/v3182) ([Шангли-ла: Комплексный пакет](https://vndb.org/r6255)).
 - [Шангри-ла 2](https://vndb.org/v3183) ([Шангли-ла: Комплексный пакет](https://vndb.org/r6255)).
 
-# Some useful function / Некоторые полезные функции
+# Some useful functions / Некоторые полезные функции
 ## English
 There is one nasty problem. One you can encouter almost every time you work on fantranslation of game on this engine. And this is... lack of breaks! Not only AI5WIN's messagebox can contain too few symbols, this engine itself cannot print too many at once. But my tool, unlike some shabby string replacers, allows you to edit code fully and therefore solve all problem with breaks. This section also contains some other functions you may find useful.
 Do note, methods here may not work on some script version.
