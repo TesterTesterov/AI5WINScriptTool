@@ -57,6 +57,7 @@ Also 1st version of the engine use special symbols. The tool decompile them as \
 - [Kono Yo no Hate de Koi o Utau Shoujo YU-NO](https://vndb.org/v1377) ([Elf Classics](https://vndb.org/r5220)).
 - [Shangrlia](https://vndb.org/v3182) ([Shangrlia Multipack](https://vndb.org/r6255)).
 - [Shangrlia 2](https://vndb.org/v3183) ([Shangrlia Multipack](https://vndb.org/r6255)).
+- [Kawarazaki-ke no Ichizoku 2](https://vndb.org/v2361) ([DVD-ROM edition](https://vndb.org/r4617)) -- **does not use full-fledged AI5WIN engine!**
 
 ## Русский
 
@@ -66,6 +67,7 @@ Also 1st version of the engine use special symbols. The tool decompile them as \
 - [Ю-НО: девушка, что воспевает любовь на краю нашего света](https://vndb.org/v1377) ([Классика от Elf](https://vndb.org/r5220)).
 - [Шангри-ла](https://vndb.org/v3182) ([Шангли-ла: Комплексный пакет](https://vndb.org/r6255)).
 - [Шангри-ла 2](https://vndb.org/v3183) ([Шангли-ла: Комплексный пакет](https://vndb.org/r6255)).
+- [Семья Каварадзаки 2](https://vndb.org/v2361) ([DVD-версия](https://vndb.org/r4617)) -- **не использует полноценный AI5WIN!**
 
 # Some useful functions / Некоторые полезные функции
 ## English
