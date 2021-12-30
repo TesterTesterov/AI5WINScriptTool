@@ -8,14 +8,16 @@ if (sys.platform == 'win32'):
 
 
 executables = [cx_Freeze.Executable("main.py",
-                                    shortcut_name="AI5WINScriptTool",
-                                    shortcut_dir="AI5WINScriptTool")]
+                                    shortcut_name="SilkyArcTool",
+                                    shortcut_dir="SilkyArcTool",
+                                    #base="Win32GUI"
+                                    )]
 
 cx_Freeze.setup(
-        name="AI5WINScriptTool",
-        version="1.0",
-        description="Dual languaged (rus+eng) tool for compiling and decompiling mes scripts of AI5WIN.\n"
-                    "Двухязычное средство (рус+англ) для компиляции и декомпиляции скриптов mes AI5WIN.",
+        name="AI5WINArcTool",
+        version="2.1",
+        description="Dual languaged (rus+eng) tool for packing and unpacking archives of Silky Engine.\n"
+                    "Двуязычное средство (рус+англ) для распаковки и запаковки архивов Silky Engine.",
         options={"build_exe": {"packages": []}},
         executables=executables
 )
