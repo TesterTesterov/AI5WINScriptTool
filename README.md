@@ -9,9 +9,9 @@ Definations: "#0-" are "free bytes", "#1-" are commands (and "\[...]" are argume
 Also 1st version of the engine use special symbols. The tool decompile them as \*N, there N is hex-number.
 
 **Supported versions** *(list may not include all existing versions)*:
-- 0 - in oldest games (before 2000);
+- 0 - in old games (1998-2000);
 - 1 - in main chunk of games (2000-2003(5));
-- 2 - in the oldest games (after 2003(5)).
+- 2 - in the newest games (after 2003(5)).
 
 ## Русский
  Двуязычное (рус+англ) средство для декомпиляции и компиляции скриптов .mes движка визуальных новелл AI5WIN. С неполным списком игр на нём вы можете ознакомиться [на vndb](https://vndb.org/r?q=&o=a&s=title&f=fwAI5WIN-). С ним вы можете полностью редактирвоать код, а не только строки; по вашему повелению добавлять разрывы между сообщений и даже менять сценарии по своему замыслу!
@@ -23,9 +23,9 @@ Also 1st version of the engine use special symbols. The tool decompile them as \
  Также в 1-й версии движка в тексте встречаются спецсимволы движка. Они имеют формат \*N, где N -- шестнадцатеричная цифра.
  
 **Поддерживаемые версии** *(список может не включать все существующие версии)*:
-- 0 - в старейших играх (до 2000);
+- 0 - в старых играх (1998-2000);
 - 1 - в основной массе игр (2000-2003(5));
-- 2 - в старейших играх (после 2003(5)).
+- 2 - в новейших играх (после 2003(5)).
 
  # Usage / Использование
 ## English
