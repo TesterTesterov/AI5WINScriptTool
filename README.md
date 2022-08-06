@@ -53,6 +53,7 @@ Also 1st version of the engine use special symbols. The tool decompile them as \
 
 - [Doukusei 2](https://vndb.org/v2337). 0 version.
 - [Koihime](https://vndb.org/v2347). 0 version.
+- [Isaku Renewal](https://vndb.org/r4568). 0 version.
 - [Shangrlia](https://vndb.org/v3182) ([Elf Classics](https://vndb.org/r5220)). 1 version.
 - [Shangrlia 2](https://vndb.org/v3183) ([Elf Classics](https://vndb.org/r5220)). 1 version.
 - [Kono Yo no Hate de Koi o Utau Shoujo YU-NO](https://vndb.org/v1377) ([Elf Classics](https://vndb.org/r5220)). 1 version.
@@ -64,6 +65,7 @@ Also 1st version of the engine use special symbols. The tool decompile them as \
 
 - [Одноклассники 2](https://vndb.org/v2337). 0 версия.
 - [Принцесса любви](https://vndb.org/v2347). 0 версия.
+- [Исаку: Обновлённая версия](https://vndb.org/r4568). 0 версия.
 - [Шангри-ла](https://vndb.org/v3182) ([Классика от Elf](https://vndb.org/r5220)). 1 версия.
 - [Шангри-ла 2](https://vndb.org/v3183) ([Классика от Elf](https://vndb.org/r5220)). 1 версия.
 - [Ю-НО: девушка, что воспевает любовь на краю нашего света](https://vndb.org/v1377) ([Классика от Elf](https://vndb.org/r5220)). 1 версия.
