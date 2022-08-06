@@ -9,7 +9,7 @@ Definations: "#0-" are "free bytes", "#1-" are commands (and "\[...]" are argume
 Also 1st version of the engine use special symbols. The tool decompile them as \*N, there N is hex-number.
 
 **Supported versions** *(list may not include all existing versions)*:
-- 0 - in old games (1998-2000);
+- 0 - in old games (1997-2000);
 - 1 - in main chunk of games (2000-2003(5));
 - 2 - in the newest games (after 2003(5)).
 
@@ -23,7 +23,7 @@ Also 1st version of the engine use special symbols. The tool decompile them as \
  Также в 1-й версии движка в тексте встречаются спецсимволы движка. Они имеют формат \*N, где N -- шестнадцатеричная цифра.
  
 **Поддерживаемые версии** *(список может не включать все существующие версии)*:
-- 0 - в старых играх (1998-2000);
+- 0 - в старых играх (1997-2000);
 - 1 - в основной массе игр (2000-2003(5));
 - 2 - в новейших играх (после 2003(5)).
 
@@ -51,22 +51,24 @@ Also 1st version of the engine use special symbols. The tool decompile them as \
 # Tested on / Протестировано на
 ## English
 
-- [Koihime](https://vndb.org/v2347).
-- [Shangrlia](https://vndb.org/v3182) ([Elf Classics](https://vndb.org/r5220)).
-- [Shangrlia 2](https://vndb.org/v3183) ([Elf Classics](https://vndb.org/r5220)).
-- [Kono Yo no Hate de Koi o Utau Shoujo YU-NO](https://vndb.org/v1377) ([Elf Classics](https://vndb.org/r5220)).
-- [Shangrlia](https://vndb.org/v3182) ([Shangrlia Multipack](https://vndb.org/r6255)).
-- [Shangrlia 2](https://vndb.org/v3183) ([Shangrlia Multipack](https://vndb.org/r6255)).
+- [Doukusei 2](https://vndb.org/v2337). 0 version.
+- [Koihime](https://vndb.org/v2347). 0 version.
+- [Shangrlia](https://vndb.org/v3182) ([Elf Classics](https://vndb.org/r5220)). 1 version.
+- [Shangrlia 2](https://vndb.org/v3183) ([Elf Classics](https://vndb.org/r5220)). 1 version.
+- [Kono Yo no Hate de Koi o Utau Shoujo YU-NO](https://vndb.org/v1377) ([Elf Classics](https://vndb.org/r5220)). 1 version.
+- [Shangrlia](https://vndb.org/v3182) ([Shangrlia Multipack](https://vndb.org/r6255)). 2 version.
+- [Shangrlia 2](https://vndb.org/v3183) ([Shangrlia Multipack](https://vndb.org/r6255)). 2 version.
 - [Kawarazaki-ke no Ichizoku 2](https://vndb.org/v2361) ([DVD-ROM edition](https://vndb.org/r4617)) -- **does not use full-fledged AI5WIN engine!**
 
 ## Русский
 
-- [Принцесса любви](https://vndb.org/v2347).
-- [Шангри-ла](https://vndb.org/v3182) ([Классика от Elf](https://vndb.org/r5220)).
-- [Шангри-ла 2](https://vndb.org/v3183) ([Классика от Elf](https://vndb.org/r5220)).
-- [Ю-НО: девушка, что воспевает любовь на краю нашего света](https://vndb.org/v1377) ([Классика от Elf](https://vndb.org/r5220)).
-- [Шангри-ла](https://vndb.org/v3182) ([Шангли-ла: Комплексный пакет](https://vndb.org/r6255)).
-- [Шангри-ла 2](https://vndb.org/v3183) ([Шангли-ла: Комплексный пакет](https://vndb.org/r6255)).
+- [Одноклассники 2](https://vndb.org/v2337). 0 версия.
+- [Принцесса любви](https://vndb.org/v2347). 0 версия.
+- [Шангри-ла](https://vndb.org/v3182) ([Классика от Elf](https://vndb.org/r5220)). 1 версия.
+- [Шангри-ла 2](https://vndb.org/v3183) ([Классика от Elf](https://vndb.org/r5220)). 1 версия.
+- [Ю-НО: девушка, что воспевает любовь на краю нашего света](https://vndb.org/v1377) ([Классика от Elf](https://vndb.org/r5220)). 1 версия.
+- [Шангри-ла](https://vndb.org/v3182) ([Шангли-ла: Комплексный пакет](https://vndb.org/r6255)). 2 версия.
+- [Шангри-ла 2](https://vndb.org/v3183) ([Шангли-ла: Комплексный пакет](https://vndb.org/r6255)). 2 версия.
 - [Семья Каварадзаки 2](https://vndb.org/v2361) ([DVD-версия](https://vndb.org/r4617)) -- **не использует полноценный AI5WIN!**
 
 # Some useful functions / Некоторые полезные функции
