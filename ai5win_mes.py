@@ -25,12 +25,16 @@ class AI5WINScript(SilkyMesScript):
 
     header_version_threshold = 3
     supported_versions = (
-        (1, "Koihime, etc. ~ 1999 y."),
-        (2, "Elf Classics, etc. ~ 2000 y."),
-        (3, "Shangrlia Multipack, etc. ~ 2005 y.", ),
+        #-1, "Isaku, etc. ~ 1997 y."),
+        # Too much troubles without any need.
+        # Every game with -1 has also releases with older versions of the engine.
+        (0, "Koihime, etc. ~ 1999 y."),
+        (1, "Elf Classics, etc. ~ 2000 y."),
+        (2, "Shangrlia Multipack, etc. ~ 2005 y.", ),
     )
 
     struct_def = "*STRUCT*"
+    ancient_struct_def = "*ANCIENT_STRUCT*"
     var_def = "*VARIABLE*"
     group_def = "*GROUP*"
     cont_def = "*CONTINUE*"
@@ -43,6 +47,9 @@ class AI5WINScript(SilkyMesScript):
     # But good enough. Let the hacking start!
 
     # C -- code structures.
+    # c -- ancient code structures. TODO: IMPLEMENT PACK!
+    # 6 -- 6-string.
+    # R -- crypto-string. TODO: IMPLEMENT PACK!
     # V -- variables methods.
     # G -- group of code structures (probably need to implement normal
     # group structure, such as in SLG System, but...
@@ -53,7 +60,10 @@ class AI5WINScript(SilkyMesScript):
     # to make support of labels easier.
 
     command_library = {
-        1: (  # Less than ideal, since I could not run actual tests on the game itself.
+        #-1: (
+        #    (0x12, 'c', ''),
+        #),
+        0: (  # Less than ideal, since I could not run actual tests on the game itself.
             (0x00, '', 'RETURN'),
             (0x01, 'S', 'TEXT'),
             (0x02, 'C', ''),
@@ -99,7 +109,7 @@ class AI5WINScript(SilkyMesScript):
         # 0x13: "" -> "B".
         # 0x14: "CG" -> "CI".
         # Commands 0x18, 0x20 deleted.
-        2: (
+        1: (
             (0x00, '', 'RETURN'),
             (0x01, 'S', 'TEXT'),
             (0x02, 'S', 'SYSTEM_TEXT'),
@@ -128,7 +138,7 @@ class AI5WINScript(SilkyMesScript):
         # Changes in commands...
         # 0x15: "" -> "CG".
         # New commands: 0x17-0x1f.
-        3: (
+        2: (
             (0x00, '', 'RETURN'),
             (0x01, 'S', 'TEXT'),
             (0x02, 'S', 'SYSTEM_TEXT'),
@@ -198,7 +208,20 @@ class AI5WINScript(SilkyMesScript):
         (0xFF, '', 'STRUCT_END'),
     )
 
+    ancient_struct_library = (
+        #(0x02, '', ''),  # B?
+        #(0x06, '6', ''),
+        #(0x07, 'B', ''),
+
+        #(0xe5, 'R', ''),
+    )
+
     offsets_library = {
+        0: (
+            (0x09, 1),
+            (0x0a, 0),
+            (0x0e, 2),
+        ),
         1: (
             (0x09, 1),
             (0x0a, 0),
@@ -223,13 +246,20 @@ class AI5WINScript(SilkyMesScript):
     def __init__(self, mes_name: str, txt_name: str, version: int, encoding: str = "", debug: bool = False,
                  verbose: bool = False, hackerman_mode: bool = False):
         super().__init__(mes_name, txt_name, encoding, debug, verbose, hackerman_mode)
+        self._header_str = ()
         self.version = version
 
         self.get_C.instances = ("C",)
+        self.get_c.instances = ("c",)
+        self.get_6.instances = ("6",)
+        self.get_R.instances = ("R",)
         self.get_V.instances = ("V",)
         self.get_G.instances = ("G",)
         self.get_F.instances = ("F",)
         self.set_C.instances = self.get_C.instances
+        # self.set_c.instances = self.get_c.instances
+        self.set_6.instances = self.get_6.instances
+        # self.set_R.instances = self.get_R.instances
         self.set_V.instances = self.get_V.instances
         self.set_G.instances = self.get_G.instances
         self.set_F.instances = self.get_F.instances
@@ -239,7 +269,9 @@ class AI5WINScript(SilkyMesScript):
     def disassemble(self) -> None:
         """Disassemble AI6WIN mes script."""
         self._offsets = []
-        if self.version < self.header_version_threshold:  # 1st version... has no header whatsoever!
+        if self.version == 0:
+            self._header_str = self._diss_header()
+        elif self.version < self.header_version_threshold:  # 1st version... has no header whatsoever!
             self._prm, self._first_offsets = [0, 0], []
         else:
             self._prm, self._first_offsets = self._diss_header()
@@ -281,6 +313,11 @@ class AI5WINScript(SilkyMesScript):
             out_file.write(struct.pack('I', self._prm[0]))
             for first_offset in self._first_offsets:
                 out_file.write(struct.pack('I', first_offset))
+
+        if self.version == 0:
+            out_file.write(struct.pack("H", self._header_str[0]))
+            out_file.write(self._header_str[1].encode(self.encoding))
+            in_file.readline()
 
         while True:
             line = in_file.readline()
@@ -344,6 +381,13 @@ class AI5WINScript(SilkyMesScript):
 
         pointer = 0
         message_count = 0
+
+        if self.version == 0:
+            header_line = in_file.readline()[:-1]
+            header_len = len(header_line.encode(self.encoding))
+            self._header_str = []
+            self._header_str.append(header_len)
+            self._header_str.append(header_line)
 
         while True:
             line = in_file.readline()
@@ -429,6 +473,9 @@ class AI5WINScript(SilkyMesScript):
         # I know, you may say it's pointless, but that's for the sake of optimization.
 
         second_offsets = [self.get_true_offset(i) for i in self._second_offsets]
+
+        if self.version == 0:
+            out_file.write("{}\n".format(self._header_str[1]))
 
         while True:
             pointer = in_file.tell()  # To get current position before the command.
@@ -534,6 +581,8 @@ class AI5WINScript(SilkyMesScript):
 
         if self._hackerman_mode:
             out_file = open("HACK.txt", 'w', encoding=self.encoding)
+            if self.version == 0:
+                out_file.write("{}\n".format(self._header_str[1]))
 
         while True:
             pointer = in_file.tell()
@@ -577,26 +626,36 @@ class AI5WINScript(SilkyMesScript):
 
     def _diss_header(self) -> tuple:
         """Disassemble Silky Engine mes header."""
-        first_offsets = []
-        with open(self._mes_name, 'rb') as mes_file:
-            prm = list(struct.unpack('I', mes_file.read(4)))
-            for i in range(prm[0]):
-                first_offsets.append(struct.unpack('I', mes_file.read(4))[0])
+        if self.version == 0:
+            with open(self._mes_name, 'rb') as mes_file:
+                script_start_offset = struct.unpack("H", mes_file.read(2))[0]
+                new_string = mes_file.read(script_start_offset - 2).decode(self.encoding)
+                return script_start_offset, new_string
+        else:
+            first_offsets = []
+            with open(self._mes_name, 'rb') as mes_file:
+                prm = list(struct.unpack('I', mes_file.read(4)))
+                for i in range(prm[0]):
+                    first_offsets.append(struct.unpack('I', mes_file.read(4))[0])
 
-        return prm, first_offsets
+            return prm, first_offsets
 
     # Offsets methods.
 
     def get_true_offset(self, raw_offset: int) -> int:
         """Get true offset (as it is factically in the file)."""
-        if self.version < self.header_version_threshold:
+        if self.version == 0:
+            return raw_offset + self._header_str[0]
+        elif self.version < self.header_version_threshold:
             return raw_offset
         else:
             return raw_offset + self._prm[0] * 4 + 4
 
     def set_true_offset(self, raw_offset):
         """Set true offset (as it is factically in the arguments)."""
-        if self.version < self.header_version_threshold:
+        if self.version == 0:
+            return raw_offset - self._header_str[0]
+        elif self.version < self.header_version_threshold:
             return raw_offset
         else:
             return raw_offset - self._prm[0] * 4 - 4
@@ -636,6 +695,8 @@ class AI5WINScript(SilkyMesScript):
                 args_bytes += AI5WINScript.set_B(argument_list[current_argument], appendix+argument)
             elif argument in AI5WINScript.set_S.instances:
                 args_bytes += AI5WINScript.set_S(argument_list[current_argument], current_encoding)
+            elif argument in AI5WINScript.set_6.instances:
+                args_bytes += AI5WINScript.set_6(argument_list[current_argument], current_encoding)
             elif argument in AI5WINScript.set_C.instances:
                 args_bytes += AI5WINScript.set_C(argument_list[current_argument], current_encoding)
             elif argument in AI5WINScript.set_V.instances:
@@ -653,6 +714,7 @@ class AI5WINScript(SilkyMesScript):
 
     @staticmethod
     def set_S(arguments: str, encoding: str) -> bytes:
+        """Pack string code structure from AI5WIN scripts."""
         arg_bytes = arguments.encode(encoding)
 
         for special_symbol in AI5WINScript.special_symbols_library:
@@ -662,7 +724,19 @@ class AI5WINScript(SilkyMesScript):
         return arg_bytes
 
     @staticmethod
+    def set_6(arguments: str, encoding: str) -> bytes:
+        """Pack 6-string code structure from AI5WIN scripts."""
+        arg_bytes = arguments.encode(encoding)
+
+        for special_symbol in AI5WINScript.special_symbols_library:
+            arg_bytes = arg_bytes.replace(special_symbol[1], special_symbol[0])
+
+        arg_bytes += b'\x06'
+        return arg_bytes
+
+    @staticmethod
     def set_F(argument: str) -> bytes:
+        """Pack F-structure from AI5WIN scripts."""
         out_bytes = b''
         if argument == AI5WINScript.cont_def:
             out_bytes += b'\x00'
@@ -774,8 +848,17 @@ class AI5WINScript(SilkyMesScript):
             elif argument in AI5WINScript.get_S.instances:
                 length, result = AI5WINScript.get_S(current_byte, in_file, current_encoding)
                 arguments_list.append(result)
+            elif argument in AI5WINScript.get_6.instances:
+                length, result = AI5WINScript.get_6(current_byte, in_file, current_encoding)
+                arguments_list.append(result)
+            elif argument in AI5WINScript.get_R.instances:
+                length, result = AI5WINScript.get_R(current_byte, in_file, current_encoding)
+                arguments_list.append(result)
             elif argument in AI5WINScript.get_C.instances:
                 result = AI5WINScript.get_C(in_file, current_byte, current_encoding)
+                arguments_list.append(result)
+            elif argument in AI5WINScript.get_c.instances:
+                result = AI5WINScript.get_c(in_file, current_byte, current_encoding)
                 arguments_list.append(result)
             elif argument in AI5WINScript.get_V.instances:
                 result = AI5WINScript.get_V(in_file, current_byte, current_encoding)
@@ -836,6 +919,35 @@ class AI5WINScript(SilkyMesScript):
         return this_struct
 
     @staticmethod
+    def get_c(file_in, current_byte: int, current_encoding: str) -> list:
+        """Extract "ancient code structure" AI5WIN's data structure."""
+        this_struct = [AI5WINScript.ancient_struct_def]
+        struct_byte = file_in.read(1)[0]
+        struct_index = - 1
+
+        for num, struct_entry in enumerate(AI5WINScript.ancient_struct_library):
+            if struct_byte == struct_entry[0]:
+                struct_index = num
+                break
+        if struct_index == -1:
+            this_struct.append("RAW")
+            this_struct.append(struct_byte)
+        else:
+            if AI5WINScript.ancient_struct_library[struct_index][2] != '':
+                true_name = AI5WINScript.ancient_struct_library[struct_index][2]
+            else:
+                true_name = hex(struct_byte)[2:]
+                if len(true_name) == 1:
+                    true_name = "0" + true_name
+            this_struct.append(true_name)
+            struct_args = AI5WINScript.get_args(in_file=file_in,
+                                                args=AI5WINScript.ancient_struct_library[struct_index][1],
+                                                current_byte=current_byte,
+                                                current_encoding=current_encoding)
+            this_struct.append(struct_args)
+        return this_struct
+
+    @staticmethod
     def get_V(in_file, current_byte: int, current_encoding: str) -> list:
         """Extract "variable data" AI5WIN's data structure."""
         this_vars = [AI5WINScript.var_def]
@@ -885,6 +997,83 @@ class AI5WINScript(SilkyMesScript):
         string = b''
         byte = in_file.read(1)
         while byte != b'\x00':
+            string += byte
+            length += 1
+            byte = in_file.read(1)
+
+        # Specsymbols managing.
+
+        for special_symbol in AI5WINScript.special_symbols_library:
+            string = string.replace(special_symbol[0], special_symbol[1])
+
+        try:
+            return length, string.decode(encoding)
+        except UnicodeDecodeError:
+            print("Decode error:", string)
+            return length, string
+        
+    @staticmethod
+    def get_R(mode: int, in_file, encoding: str) -> tuple:
+        """Get crypto string from the mode and input file (pointer at the start of string)."""
+        length = 0
+        string = b''
+        byte = in_file.read(1)
+        while byte != b'\x11':
+            string += byte
+            length += 1
+            byte = in_file.read(1)
+
+        # TODO: DELETE!
+        string = b'\xe5' + string
+
+        list_bytes = string.hex(' ').split(' ')
+        string = b''
+        i = 0
+        while i < len(list_bytes):
+            number = int(list_bytes[i], 16)
+            if number < 0x81:
+                zlo = number - 0x7D62
+                high = (zlo & 0xff00) >> 8
+                low = zlo & 0xff
+                marbas = str(hex(high))[2:]
+                if len(marbas) == 1:
+                    marbas = "0" + marbas
+                string += byte.fromhex(marbas)
+                marbas = str(hex(low))[2:]
+                if len(marbas) == 1:
+                    marbas = "0" + marbas
+                string += byte.fromhex(marbas)
+                i += 1
+            else:
+                high = int(list_bytes[i], 16)
+                marbas = str(hex(high))[2:]
+                if len(marbas) == 1:
+                    marbas = "0" + marbas
+                string += byte.fromhex(marbas)
+                if (i + 1) < len(list_bytes):
+                    i += 1
+                    low = int(list_bytes[i], 16)
+                    marbas = str(hex(low))[2:]
+                    if len(marbas) == 1:
+                        marbas = "0" + marbas
+                    string += byte.fromhex(marbas)
+                i += 1
+        try:
+            return length, (string.decode(encoding))
+        except UnicodeDecodeError:
+            print("Decode error:", string)
+            return length, string.hex(' ')
+
+        #for special_symbol in AI5WINScript.special_symbols_library:
+        #    string = string.replace(special_symbol[0], special_symbol[1])
+
+    @staticmethod
+    def get_6(mode: int, in_file, encoding: str) -> tuple:
+        """Get 6-string from the mode and input file (pointer at the start of stirng)."""
+        length = 0
+        string = b''
+        byte = in_file.read(1)
+        while byte != b'\x06':
             string += byte
             length += 1
             byte = in_file.read(1)
