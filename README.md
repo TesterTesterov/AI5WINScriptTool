@@ -13,6 +13,9 @@ Also 1st version of the engine use special symbols. The tool decompile them as \
 - 1 - in main chunk of games (2000-2003(5));
 - 2 - in the newest games (after 2003(5)).
 
+**Unsupported versions**:
+- -1 - in one or two oldest releases of AI5WIN. The heretical and deviant version, which would be tiresome to hack with little benefit. **Every game with the version also have at least one other release with one of the supported versions.**
+
 ## Русский
  Двуязычное (рус+англ) средство для декомпиляции и компиляции скриптов .mes движка визуальных новелл AI5WIN. С неполным списком игр на нём вы можете ознакомиться [на vndb](https://vndb.org/r?q=&o=a&s=title&f=fwAI5WIN-). С ним вы можете полностью редактирвоать код, а не только строки; по вашему повелению добавлять разрывы между сообщений и даже менять сценарии по своему замыслу!
   Скрипты с расширением "mes" используются не только в AI6WIN, но также и в AI6WIN с Silky Engine. Чтобы дизассемблировать и ассемблировать скрипты движков AI6WIN и Silky Engine, используйте иные средства -- [AI6WINScriptTool](https://github.com/TesterTesterov/AI6WINScriptTool) и [mesScriptAsseAndDisassembler](https://github.com/TesterTesterov/mesScriptAsseAndDisassembler) соответственно.
@@ -26,6 +29,9 @@ Also 1st version of the engine use special symbols. The tool decompile them as \
 - 0 - в старых играх (1997-2000);
 - 1 - в основной массе игр (2000-2003(5));
 - 2 - в новейших играх (после 2003(5)).
+
+**Неподдерживаемые версии**:
+- -1 - в одном-двум древнейших релизов AI5WIN. Еретическая и девиантная версия, что было бы проблематично ломать без особого толку. **Каждая игра на сей версии движка также имеет хотя бы один релиз на одной из поддерживаемых версий.**
 
  # Usage / Использование
 ## English
@@ -51,6 +57,7 @@ Also 1st version of the engine use special symbols. The tool decompile them as \
 # Tested on / Протестировано на
 ## English
 
+- [Isaku (1997)](https://vndb.org/r4567). -1 version. **Not supported. Take [Isaku Renewal](https://vndb.org/r4568) instead**.
 - [Doukusei 2](https://vndb.org/v2337). 0 version.
 - [Koihime](https://vndb.org/v2347). 0 version.
 - [Isaku Renewal](https://vndb.org/r4568). 0 version.
@@ -63,6 +70,7 @@ Also 1st version of the engine use special symbols. The tool decompile them as \
 
 ## Русский
 
+- [Исаку (1997)](https://vndb.org/r4567). -1 версия. **Не поддерживается. Вместо неё берите [Исаку: Обновлённая версия](https://vndb.org/r4568)**.
 - [Одноклассники 2](https://vndb.org/v2337). 0 версия.
 - [Принцесса любви](https://vndb.org/v2347). 0 версия.
 - [Исаку: Обновлённая версия](https://vndb.org/r4568). 0 версия.
