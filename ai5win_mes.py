@@ -23,7 +23,7 @@ class AI5WINScript(SilkyMesScript):
         (b'\xeb\xaf', b'*f'),
     )
 
-    header_version_threshold = 3
+    header_version_threshold = 2
     supported_versions = (
         #-1, "Isaku, etc. ~ 1997 y."),
         # Too much troubles without any need.
@@ -221,20 +221,15 @@ class AI5WINScript(SilkyMesScript):
             (0x09, 1),
             (0x0a, 0),
             (0x0e, 2),
-        ),
-        1: (
-            (0x09, 1),
-            (0x0a, 0),
-            (0x0e, 2),
             (0x12, 1),
         ),
-        2: (
+        1: (
             (0x0b, 1),
             (0x0c, 0),
             (0x10, 1),
             (0x14, 1),
         ),
-        3: (
+        2: (
             (0x0b, 1),
             (0x0c, 0),
             (0x10, 1),
@@ -290,7 +285,7 @@ class AI5WINScript(SilkyMesScript):
 
         if self._verbose:
             print("Parameters:", self._prm[0:1])
-            if self.version > self.header_version_threshold:
+            if self.version >= self.header_version_threshold:
                 print("First offsets:", len(self._first_offsets), self._first_offsets)
             print("True offsets:", len(self._offsets), self._offsets)
         self._assemble_script_file()
@@ -309,7 +304,7 @@ class AI5WINScript(SilkyMesScript):
         message_count = 0
         search_offset = [i[0] for i in self._offsets]
 
-        if self.version > self.header_version_threshold:
+        if self.version >= self.header_version_threshold:
             out_file.write(struct.pack('I', self._prm[0]))
             for first_offset in self._first_offsets:
                 out_file.write(struct.pack('I', first_offset))

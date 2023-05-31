@@ -13,7 +13,7 @@ executables = [cx_Freeze.Executable("main.py",
 
 cx_Freeze.setup(
         name="AI5WINScriptTool",
-        version="1.0",
+        version="1.1",
         description="Dual languaged (rus+eng) tool for compiling and decompiling mes scripts of AI5WIN.\n"
                     "Двухязычное средство (рус+англ) для компиляции и декомпиляции скриптов mes AI5WIN.",
         options={"build_exe": {"packages": []}},
